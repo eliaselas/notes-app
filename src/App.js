@@ -14,8 +14,6 @@ export default function App() {
     const [currentNoteId, setCurrentNoteId] = React.useState(
         (notes[0] && notes[0].id) || ""
     )
-    const [state, setState] = React.useState(console.log("State initialization"))
-    
     React.useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes))
     }, [notes])
@@ -53,7 +51,7 @@ export default function App() {
     function deleteNote(event, noteId) {
         event.stopPropagation()
         setNotes(oldNotes => oldNotes.filter(note => note.id !== noteId))
-        // Your code here
+        
     }
 
     return (
