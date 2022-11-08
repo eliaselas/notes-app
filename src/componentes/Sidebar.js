@@ -1,7 +1,16 @@
 import React from "react"
+import '../App.css'
 
 export default function Sidebar(props) {
+    const NoteName = (note, index) => {
+        let texto = note.body.split("\n")[0]
+        if(texto!=="" && texto!=="# Type your markdown note's title here"){
+            return `Note ${(index+1)}`
+        }
+        return texto
+    };
     const noteElements = props.notes.map((note, index) => (
+        
         <div key={note.id}>
             <div
                 
@@ -10,7 +19,13 @@ export default function Sidebar(props) {
                 }`}
                 onClick={() => props.setCurrentNoteId(note.id)}
             >
-                <h4 className="text-snippet">Note {index + 1}</h4>
+                <h4 className="text-snippet">{ note.body.split("\n")[0] }</h4>
+                <button 
+                    className="delete-btn"
+                    onClick={(event) => props.deleteNote(event, note.id)}
+                >
+                    <i className="gg-trash trash-icon"></i>
+                </button>
             </div>
         </div>
     ))
